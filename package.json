@@ -1,0 +1,79 @@
+{
+  "name": "electron-zhe",
+  "version": "1.0.0",
+  "description": "Z核校园应用程序",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "packager": "electron-packager . zhe --win --out ../zhe --arch=x64 --app-version=0.0.1 --electron-version=13.1.6 --overwrite --icon=./static/logo.ico --ignore=node_modules",
+	"build": "electron-builder"
+  },
+  "keywords": [
+    "Z核"
+  ],
+  "author": "zbeboy",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.57",
+    "@electron-forge/maker-deb": "^6.0.0-beta.57",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.57",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
+    "@electron-forge/maker-zip": "^6.0.0-beta.57",
+    "electron": "^13.1.6",
+    "electron-builder": "^22.11.7",
+    "electron-packager": "^15.2.0"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "name": "zhe-app",
+        "icon": "./static/logo.ico"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_zhe"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  },
+  "build":{
+    "appId": "top.zbeboy.app",
+	"productName": "Z核校园",
+	"electronDownload":{
+      "mirror":"https://npm.taobao.org/mirrors/electron/"
+    },
+	"win": {
+		"icon": "./static/logo.png",
+		"target": [
+			"nsis"
+		]
+	},
+	"nsis": {
+		"oneClick": false,
+		"perMachine": true,
+		"allowToChangeInstallationDirectory": true
+	}
+  }
+}
